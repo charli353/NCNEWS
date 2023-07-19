@@ -26,6 +26,7 @@ export function RetrieveComments (props) {
 export function LeaveComment (props) {
   const [comment, setComment] = useState()
   const [validity, setValid] = useState(true)
+  const [inputFeedback, setInputFeedback] = useState('success')
 
 
   const showing = props.show
@@ -37,6 +38,7 @@ export function LeaveComment (props) {
       setValid(true)
     }
     else {
+      setInputFeedback('fail')
       setValid(false)
     }
   }
@@ -48,8 +50,8 @@ export function LeaveComment (props) {
     return (
       <div id='commentarea'>
         <form>
-          <label htmlFor="commentbox"></label>
-          <input type="text" id='commentbox' value={comment} placeholder='Comment' onChange={(event) => {
+          <label htmlFor={inputFeedback}></label>
+          <input type="text" id={inputFeedback} value={comment} placeholder='Post a Comment' onChange={(event) => {
             setComment(event.target.value)
           }}/>
           <FailedForm valid={validity}/>

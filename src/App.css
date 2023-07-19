@@ -98,11 +98,23 @@
   opacity: 90%;
 }
 
-#commentbox {
+#success {
   background-color: #362222;
   width: 80%;
   color: #F4EEE0;
   border: #313131 1px solid;
+  font-family: 'DM Sans', sans-serif;
+
+}
+
+#fail {
+  background-color: #362222;
+  width: 80%;
+  color: #F4EEE0;
+  border: #bb2e2e 1px solid;
+  font-family: 'DM Sans', sans-serif;
+
+
 }
 
 #commentbox:hover {
@@ -191,7 +203,7 @@
 }
 
 .trendall:focus {
-  border: 2px #F4EEE0 solid;
+  border: 2px #b73840 solid;
 }
 
 
