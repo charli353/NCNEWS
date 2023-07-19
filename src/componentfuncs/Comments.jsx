@@ -1,4 +1,8 @@
 import React from 'react'
+import { useState } from 'react'
+
+import { getComments, postComment } from '../api'
+
 
 export function RetrieveComments (props) {
     const comments = props.comments
@@ -19,4 +23,54 @@ export function RetrieveComments (props) {
   }
 }
   
+export function LeaveComment (props) {
+  const [comment, setComment] = useState()
+  const [validity, setValid] = useState(true)
 
+
+  const showing = props.show
+  const currentId = props.id
+
+  const commentValidate = (comment) => {
+    if (typeof comment === 'string' && comment.length > 15){
+      postComment(currentId, comment)
+      setValid(true)
+    }
+    else {
+      setValid(false)
+    }
+  }
+
+
+
+  
+  if(showing){
+    return (
+      <div id='commentarea'>
+        <form>
+          <label htmlFor="commentbox"></label>
+          <input type="text" id='commentbox' value={comment} placeholder='Comment' onChange={(event) => {
+            setComment(event.target.value)
+          }}/>
+          <FailedForm valid={validity}/>
+          <button id='likebutton' onClick={(event) => {
+            event.preventDefault()
+            commentValidate(comment)
+            setComment('')
+          }}>Submit</button>
+        </form>
+      </div>
+    )
+  }
+}
+
+function FailedForm (props) {
+  const validity = props.valid
+
+  if (!validity){
+    return (
+      <h3>Minimum 15 Characters...</h3>
+    )
+  }
+  else return 
+}

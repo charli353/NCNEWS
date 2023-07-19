@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getArticle, getComments, updateVotes } from '../api'
-import { RetrieveComments } from '../componentfuncs/Comments'
+import { RetrieveComments, LeaveComment } from '../componentfuncs/Comments'
 
 
 export default function (props) {
@@ -32,7 +32,7 @@ export default function (props) {
         .then(()=>{
           setLoading(false)
         })
-      }, [])
+      }, [comments])
 
       
 
@@ -60,6 +60,11 @@ export default function (props) {
         <button id='commentsbutton' onClick={(event) => {
           setShow(prevShow => !prevShow)
         }}><ButtonSwitch show={showComments}/></button>
+        <LeaveComment show={showComments} id={currentId} onSubmit={(event) => {
+          getComments(currentId).then((response) => {
+            setComments(response)
+          })
+        }}/>
         <RetrieveComments comments={comments} show={showComments}/>
       </div>
     </div>

@@ -98,6 +98,19 @@
   opacity: 90%;
 }
 
+#commentbox {
+  background-color: #362222;
+  width: 80%;
+  color: #F4EEE0;
+  border: #423F3E 1px solid;
+}
+
+#commentbox:hover {
+  color: #171010;
+  background-color: #F4EEE0;
+  border-color: #b73840;
+}
+
 
 #commentsbutton {
   margin-top: 10px;
