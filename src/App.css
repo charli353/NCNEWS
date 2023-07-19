@@ -31,25 +31,25 @@
   border: 1px #F4EEE0 solid;
   grid-column: 1;
   grid-row: 1 / 7;
-  background-color: #423F3E;
+  background-color: #313131;
 
 
   text-align: center;
   overflow: scroll;
   border-radius: 2px;
 }
-#search {
+#topics {
   border: 1px #F4EEE0 solid;
   grid-column: 2;
   grid-row: 1 / 7;
-  background-color: #423F3E;
+  background-color: #313131;
   border-radius: 2px;
 }
 #post {
   border: 1px #F4EEE0 solid;
   grid-column: 3;
   grid-row: 1 / 7;
-  background-color: #423F3E;
+  background-color: #313131;
   border-radius: 2px;
 }
 
@@ -102,7 +102,7 @@
   background-color: #362222;
   width: 80%;
   color: #F4EEE0;
-  border: #423F3E 1px solid;
+  border: #313131 1px solid;
 }
 
 #commentbox:hover {
@@ -116,7 +116,7 @@
   margin-top: 10px;
   border: none;
   color: #F4EEE0;
-  background-color: #423F3E;
+  background-color: #313131;
   font-family: 'DM Sans', sans-serif;
   margin-bottom: 15px;
   border-radius: 2px;
@@ -124,7 +124,7 @@
 }
 
 #commentsbutton:hover {
-  background-color: #423F3E;
+  background-color: #313131;
   cursor: pointer;
 }
 
@@ -149,6 +149,10 @@
   border-radius: 2px;
   margin-right: 2px;
   width: 200px;
+}
+
+#spacer {
+  height: 36px;
 }
 
 .article {
@@ -188,6 +192,11 @@
 
 .trendall:focus {
   border: 2px #F4EEE0 solid;
+}
+
+
+header {
+  color: #F4EEE0;
 }
 
 ul {

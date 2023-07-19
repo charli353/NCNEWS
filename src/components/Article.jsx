@@ -52,6 +52,7 @@ export default function (props) {
           setErr('Something went wrong. Please try again later')
         })
       }}>LIKE : {likes}</button>
+      <h3>{err}</h3>
       
       </div>
       
@@ -60,11 +61,7 @@ export default function (props) {
         <button id='commentsbutton' onClick={(event) => {
           setShow(prevShow => !prevShow)
         }}><ButtonSwitch show={showComments}/></button>
-        <LeaveComment show={showComments} id={currentId} onSubmit={(event) => {
-          getComments(currentId).then((response) => {
-            setComments(response)
-          })
-        }}/>
+        <LeaveComment show={showComments} id={currentId}/>
         <RetrieveComments comments={comments} show={showComments}/>
       </div>
     </div>
