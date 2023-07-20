@@ -38,15 +38,14 @@ export default function (props) {
 
 
   return loading ? <p className='loader'>Loading...</p> : (
-    <div id='singleArticle'>
-      <div id='articleimg'>
+    <section id='singleArticle'>
+      <figure id='articletitle'>
       <h2>"{article.title}"</h2>
-      <div>
-      <img src={article.article_img_url} alt="Article Cover Art"/>
+      </figure>
+      <div id='articleimg'>
+      <img src={article.article_img_url} alt="Article Cover Art" id='imgchild'/>
       </div>
-
-      </div>
-      <div id='articlebody'>
+      <article id='articlebody'>
       <h3 id='body'>{article.body}</h3>
       <button id='likebutton' onClick={(event) => {
         setLikes((currLikes) => currLikes + 1)
@@ -57,7 +56,7 @@ export default function (props) {
       }}>LIKE : {likes}</button>
       <h3>{err}</h3>
       
-      </div>
+      </article>
       
 
       <div id='comments'>
@@ -67,7 +66,7 @@ export default function (props) {
         <LeaveComment show={showComments} id={currentId}/>
         <RetrieveComments comments={comments} show={showComments}/>
       </div>
-    </div>
+    </section>
   )
 }
 

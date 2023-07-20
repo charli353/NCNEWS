@@ -24,8 +24,8 @@ export function RetrieveComments (props) {
 }
   
 export function LeaveComment (props) {
-  const [comment, setComment] = useState()
-  const [validity, setValid] = useState(true)
+  const [comment, setComment] = useState('')
+  const [validity, setValid] = useState('true')
   const [inputFeedback, setInputFeedback] = useState('success')
 
 
@@ -34,12 +34,16 @@ export function LeaveComment (props) {
 
   const commentValidate = (comment) => {
     if (typeof comment === 'string' && comment.length > 15){
-      postComment(currentId, comment)
-      setValid(true)
+      postComment(currentId, comment).catch((err) => {
+        setValid('Network Error, Try Again')
+      })
+      .then(() => {
+        setValid("true")
+      })
     }
     else {
       setInputFeedback('fail')
-      setValid(false)
+      setValid("false")
     }
   }
 
@@ -69,10 +73,12 @@ export function LeaveComment (props) {
 function FailedForm (props) {
   const validity = props.valid
 
-  if (!validity){
+  if (validity === 'false'){
     return (
       <h3>Minimum 15 Characters...</h3>
     )
   }
-  else return 
+  else if (validity === 'Network Error, Try Again'){
+    return validity
+  }
 }

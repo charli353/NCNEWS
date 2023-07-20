@@ -63,24 +63,28 @@
 
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
-  grid-template-rows: 25% 25% 25% 25%;
+  grid-template-rows: 12.5% 12.5% 25% 25% 25%;
 }
 
-#articleimg {
+#articletitle {
   grid-column: 1 / 5;
   grid-row: 1 / 4;
 }
 
-#imgchild {
-  height: auto;
-  width: 100%;
-  position: relative;
-  right: 18%;
+#articleimg {
+  grid-column: 1 / 5;
+  grid-row: 2 / 4;
 }
+
+#imgchild {
+  width: 45vw;
+}
+
+
 
 #articlebody {
   grid-column: 1 / 5;
-  grid-row: 4;
+  grid-row: 5;
   line-height: 30px;
   text-align: center;
   margin-right: 20px;
@@ -96,7 +100,7 @@
 
 #comments {
   grid-column: 5;
-  grid-row: 1 / 5;
+  grid-row: 1 / 6;
   overflow: scroll;
   padding: 20px;
   border-radius: 3px;
@@ -263,6 +267,26 @@ h1 {
   margin-left: 10px;
   font-family: 'DM Sans', sans-serif;
   font-weight: 300;
+  font-size: 2vw;
+}
+
+h2 {
+  font-size: 1.5vw;
+}
+p {
+  font-size: 1vw;
+}
+
+button {
+  font-size: 1vw;
+}
+
+h3 {
+  font-size: 1vw;
+}
+
+input {
+  font-size: 1vw;
 }
 
 hr {

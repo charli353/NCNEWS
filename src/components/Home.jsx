@@ -115,7 +115,7 @@ function RetrieveArticles(props) {
         <Link to={`/topics/${topic.slug}`} key={topic.slug}>
         <div className='article'>
           <h2>{formatSlug}</h2>
-          <p>{topic.description}</p>
+          <p>Description : {topic.description}</p>
        </div>
        </Link>
      )
