@@ -30,7 +30,6 @@ useEffect(() => {
         </div>
         <div id='articlesbytopic'>
             {articles.map((article) => {
-                console.log(article)
                 return (
                     <Link to={`/articles/${article.article_id}`} key={article.article_id}>
                     <div className='article'>
