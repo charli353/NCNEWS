@@ -1,20 +1,26 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { getArticles} from '../api'
+import { getArticles, getTopics} from '../api'
 import { Link } from 'react-router-dom'
 
 
 
 export default function () {
 
-    const [trending, setTrending] = useState(true)
+    const [query, setQuery] = useState('trending')
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(true)
+    const [topics, setTopics] = useState([])
 
   
     useEffect(() => {
-      getArticles(trending).then((response) => {
+      getArticles(query).then((response) => {
         setArticles(response)
+      })
+      .then(() => {
+        getTopics().then((response) => {
+          setTopics(response)
+        })
       })
       .then(()=>{
         setLoading(false)
@@ -30,14 +36,14 @@ export default function () {
                 <h2>View Articles</h2>
             </header>
             <button className='trendall' onClick={(event) => {
-                setTrending(true)
+                setQuery('trending')
             }}>Trending</button>
             <button className='trendall' onClick={(event) => {
-                setTrending(false)
+                setQuery(false)
             }}>All Articles</button>
             <hr />
             <ul>
-              <RetrieveArticles trending={trending} articles={articles}/>
+              <RetrieveArticles trending={query} articles={articles}/>
             </ul>
           </section>
           <section id='topics'>
@@ -46,7 +52,9 @@ export default function () {
             </header>
             <div id='spacer'></div>
             <hr />
-    
+            <ul>
+              <RetrieveTopics topics={topics}/>
+            </ul>
           </section>
           <section id='post'>
           <header>
@@ -96,4 +104,20 @@ function RetrieveArticles(props) {
               })
     }
   
+  }
+
+  function RetrieveTopics(props) {
+    const topics = props.topics
+
+    return topics.map((topic) => {
+      const formatSlug = topic.slug[0].toUpperCase() + topic.slug.slice(1, topic.slug.length)
+      return ( 
+        <Link to={`/topics/${topic.slug}`} key={topic.slug}>
+        <div className='article'>
+          <h2>{formatSlug}</h2>
+          <p>{topic.description}</p>
+       </div>
+       </Link>
+     )
+    })
   }

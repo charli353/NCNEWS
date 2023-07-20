@@ -4,8 +4,8 @@ const defaultURL = axios.create({
     baseURL : 'https://nc-news-production.onrender.com/api'
   })
 
-export const getArticles = (trending) => {
-    if(trending){
+export const getArticles = (query) => {
+    if(query === 'trending'){
         return defaultURL.get('/articles?sort_by=votes').then(({data}) => {
             return data.articles
         })
@@ -45,3 +45,11 @@ export const postComment = (id, comment) => {
         return data
     })
 }
+
+export const getTopics = () => {
+    return defaultURL.get(`/topics`).then(({data}) => {
+        
+        return data.topics
+    })
+}   
+

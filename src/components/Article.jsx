@@ -41,7 +41,10 @@ export default function (props) {
     <div id='singleArticle'>
       <div id='articleimg'>
       <h2>"{article.title}"</h2>
-      <img src={article.article_img_url} alt="Article Cover Art" />
+      <div>
+      <img src={article.article_img_url} alt="Article Cover Art"/>
+      </div>
+
       </div>
       <div id='articlebody'>
       <h3 id='body'>{article.body}</h3>

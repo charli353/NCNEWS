@@ -55,7 +55,7 @@ export function LeaveComment (props) {
             setComment(event.target.value)
           }}/>
           <FailedForm valid={validity}/>
-          <button id='likebutton' onClick={(event) => {
+          <button id='submitbutton' onClick={(event) => {
             event.preventDefault()
             commentValidate(comment)
             setComment('')
