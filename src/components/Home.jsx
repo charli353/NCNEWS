@@ -40,11 +40,20 @@ export default function () {
               <RetrieveArticles trending={trending} articles={articles}/>
             </ul>
           </section>
-          <section id='search'>
+          <section id='topics'>
+          <header>
+                <h2>View Topics</h2>
+            </header>
+            <div id='spacer'></div>
+            <hr />
     
           </section>
           <section id='post'>
-    
+          <header>
+                <h2>Post Article</h2>
+            </header>
+            <div id='spacer'></div>
+            <hr />
           </section>
           
         </main>

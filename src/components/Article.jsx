@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getArticle, getComments, updateVotes } from '../api'
-import { RetrieveComments } from '../componentfuncs/Comments'
+import { RetrieveComments, LeaveComment } from '../componentfuncs/Comments'
 
 
 export default function (props) {
@@ -32,18 +32,20 @@ export default function (props) {
         .then(()=>{
           setLoading(false)
         })
-      }, [])
+      }, [comments])
 
       
 
 
   return loading ? <p className='loader'>Loading...</p> : (
-    <div id='singleArticle'>
-      <div id='articleimg'>
+    <section id='singleArticle'>
+      <div id='articletitle'>
       <h2>"{article.title}"</h2>
-      <img src={article.article_img_url} alt="Article Cover Art" />
       </div>
-      <div id='articlebody'>
+      <text id='articleimg'>
+      <img src={article.article_img_url} alt="Article Cover Art" id='imgchild'/>
+      </text>
+      <article id='articlebody'>
       <h3 id='body'>{article.body}</h3>
       <button id='likebutton' onClick={(event) => {
         setLikes((currLikes) => currLikes + 1)
@@ -52,17 +54,19 @@ export default function (props) {
           setErr('Something went wrong. Please try again later')
         })
       }}>LIKE : {likes}</button>
+      <h3>{err}</h3>
       
-      </div>
+      </article>
       
 
-      <div id='comments'>
+      <section id='comments'>
         <button id='commentsbutton' onClick={(event) => {
           setShow(prevShow => !prevShow)
         }}><ButtonSwitch show={showComments}/></button>
+        <LeaveComment show={showComments} id={currentId}/>
         <RetrieveComments comments={comments} show={showComments}/>
-      </div>
-    </div>
+      </section>
+    </section>
   )
 }
 

@@ -38,3 +38,10 @@ export const updateVotes = (id) => {
             return data
         })
     }
+
+
+export const postComment = (id, comment) => {
+    return defaultURL.post(`/articles/${id.article_id}/comments`, {username : 'weegembump', body : comment }).then(({data}) => {
+        return data
+    })
+}
