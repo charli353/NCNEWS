@@ -24,7 +24,7 @@ export function RetrieveComments (props) {
 }
   
 export function LeaveComment (props) {
-  const [comment, setComment] = useState()
+  const [comment, setComment] = useState('')
   const [validity, setValid] = useState(true)
   const [inputFeedback, setInputFeedback] = useState('success')
 
@@ -50,7 +50,7 @@ export function LeaveComment (props) {
   
   if(showing){
     return (
-      <div id='commentarea'>
+      <section id='commentarea'>
         <form>
           <label htmlFor={inputFeedback}></label>
           <input type="text" id={inputFeedback} value={comment} placeholder='Post a Comment' onChange={(event) => {
@@ -63,7 +63,7 @@ export function LeaveComment (props) {
             setComment('')
           }}>Submit</button>
         </form>
-      </div>
+      </section>
     )
   }
 }

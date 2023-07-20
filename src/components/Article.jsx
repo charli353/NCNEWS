@@ -38,14 +38,14 @@ export default function (props) {
 
 
   return loading ? <p className='loader'>Loading...</p> : (
-    <div id='singleArticle'>
+    <section id='singleArticle'>
       <div id='articletitle'>
       <h2>"{article.title}"</h2>
       </div>
-      <div id='articleimg'>
+      <text id='articleimg'>
       <img src={article.article_img_url} alt="Article Cover Art" id='imgchild'/>
-      </div>
-      <div id='articlebody'>
+      </text>
+      <article id='articlebody'>
       <h3 id='body'>{article.body}</h3>
       <button id='likebutton' onClick={(event) => {
         setLikes((currLikes) => currLikes + 1)
@@ -56,17 +56,17 @@ export default function (props) {
       }}>LIKE : {likes}</button>
       <h3>{err}</h3>
       
-      </div>
+      </article>
       
 
-      <div id='comments'>
+      <section id='comments'>
         <button id='commentsbutton' onClick={(event) => {
           setShow(prevShow => !prevShow)
         }}><ButtonSwitch show={showComments}/></button>
         <LeaveComment show={showComments} id={currentId}/>
         <RetrieveComments comments={comments} show={showComments}/>
-      </div>
-    </div>
+      </section>
+    </section>
   )
 }
 

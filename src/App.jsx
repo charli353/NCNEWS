@@ -8,13 +8,13 @@ import Article from './components/Article'
 
 function App() {
 return (
-  <div id='gridContainer'>
+  <main id='gridContainer'>
     <Navbar />
   <Routes>
     <Route path='/' element={<Home /> } />
     <Route path='/articles/:article_id' element={<Article /> }/>
   </Routes>
-  </div>
+  </main>
   
   )
 }
