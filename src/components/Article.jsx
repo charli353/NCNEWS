@@ -39,9 +39,11 @@ export default function (props) {
 
   return loading ? <p className='loader'>Loading...</p> : (
     <div id='singleArticle'>
-      <div id='articleimg'>
+      <div id='articletitle'>
       <h2>"{article.title}"</h2>
-      <img src={article.article_img_url} alt="Article Cover Art" />
+      </div>
+      <div id='articleimg'>
+      <img src={article.article_img_url} alt="Article Cover Art" id='imgchild'/>
       </div>
       <div id='articlebody'>
       <h3 id='body'>{article.body}</h3>

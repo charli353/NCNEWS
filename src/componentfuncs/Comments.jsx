@@ -32,9 +32,11 @@ export function LeaveComment (props) {
   const showing = props.show
   const currentId = props.id
 
-  const commentValidate = (comment) => {
+  const formValidation = (comment) => {
     if (typeof comment === 'string' && comment.length > 15){
-      postComment(currentId, comment)
+      postComment(currentId, comment).catch((err) => {
+        setValid('Network Error, Try Again')
+      })
       setValid(true)
     }
     else {
@@ -54,10 +56,10 @@ export function LeaveComment (props) {
           <input type="text" id={inputFeedback} value={comment} placeholder='Post a Comment' onChange={(event) => {
             setComment(event.target.value)
           }}/>
-          <FailedForm valid={validity}/>
-          <button id='likebutton' onClick={(event) => {
+          <InvalidForm valid={validity}/>
+          <button id='submitbutton' onClick={(event) => {
             event.preventDefault()
-            commentValidate(comment)
+            formValidation(comment)
             setComment('')
           }}>Submit</button>
         </form>
@@ -66,7 +68,7 @@ export function LeaveComment (props) {
   }
 }
 
-function FailedForm (props) {
+function InvalidForm (props) {
   const validity = props.valid
 
   if (!validity){
@@ -74,5 +76,9 @@ function FailedForm (props) {
       <h3>Minimum 15 Characters...</h3>
     )
   }
-  else return 
+  else if(typeof validity === 'string'){
+    return (
+      <h3>{validity}</h3>
+    )
+  }
 }
