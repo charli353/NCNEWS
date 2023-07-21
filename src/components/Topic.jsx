@@ -13,8 +13,9 @@ const formatTopic = currentTopic[0].toUpperCase() + currentTopic.slice(1, curren
 const query = {type : 'topic', query : currentTopic}
 
 
+
 useEffect(() => {
-    getArticles(query).then((response) => {
+    getArticles(query.type, query.query).then((response) => {
       setArticles(response)
     })
     .then(()=>{

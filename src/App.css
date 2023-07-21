@@ -19,12 +19,29 @@
   grid-row: 1;
   background-color: #b73840;
   color: #F4EEE0;
-  text-align: left;
+
+
+  display: grid;
+  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
 
-#settings {
+#navtitle {
+  grid-column: 1 / 2;
+}
+ 
+#anchorhome {
+  position: relative;
+  bottom: .2vw;
+}
+
+#login {
+  grid-column: 10;
   text-align: right;
-  display: block;
+  padding-right: 1vw;
+}
+
+#login:hover {
+  color: black;
 }
 
 #trending {
@@ -214,6 +231,12 @@
   
 }
 
+#sortString {
+  color: #F4EEE0;
+}
+
+
+
 .article {
   background-color: #171010;
   border: 2px #F4EEE0 solid;
@@ -249,7 +272,7 @@
   cursor: pointer;
 }
 
-.trendall:focus {
+.trendall:focus, .trendall:active {
   border: 2px #b73840 solid;
 }
 

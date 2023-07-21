@@ -7,14 +7,15 @@ import { Link } from 'react-router-dom'
 
 export default function () {
 
-    const [query, setQuery] = useState('trending')
+    const [query, setQuery] = useState('votes')
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(true)
     const [topics, setTopics] = useState([])
+    const [order, setOrder] = useState('DESC')
 
   
     useEffect(() => {
-      getArticles(query).then((response) => {
+      getArticles(query, order).then((response) => {
         setArticles(response)
       })
       .then(() => {
@@ -25,7 +26,48 @@ export default function () {
       .then(()=>{
         setLoading(false)
       })
-    }, [])
+    }, [query, order])
+
+    const queryFormatter = (query, order) => {
+      let qString
+      let oString
+      if(query === 'comment_count'){
+        qString = 'Comments'
+      }
+      if(query === 'votes'){
+        qString = 'Likes/Trending'
+      }
+      if(query === 'all'){
+        qString = 'None'
+      }
+      if(query === 'created_at'){
+        qString = 'Date'
+      }
+      if(order === 'ASC'){
+        if(query === 'created_at'){
+          oString = 'Oldest'
+        }
+        else {
+          oString = 'Ascending'
+        }
+      }
+      if(order === 'DESC'){
+        if(query === 'created_at'){
+          oString = 'Most Recent'
+        }
+        else {
+          oString = 'Descending'
+        } 
+      }
+      return [qString, oString]
+    }
+
+    const orderOrDate = (query) => {
+      if(query === 'created_at'){
+        return ['Most Recent', 'Oldest']
+      }
+      else return ['Descending', 'Ascending']
+    }
 
 
 
@@ -36,11 +78,26 @@ export default function () {
                 <h2>View Articles</h2>
             </header>
             <button className='trendall' onClick={(event) => {
-                setQuery('trending')
+                setQuery('all')
+            }}>All Articles</button>
+            <button className='trendall' onClick={(event) => {
+                setQuery('votes')
             }}>Trending</button>
             <button className='trendall' onClick={(event) => {
-                setQuery(false)
-            }}>All Articles</button>
+                setQuery('comment_count')
+            }}>Comments</button>
+            <button className='trendall' onClick={(event) => {
+                setQuery('created_at')
+            }}>Date</button>
+            <br />
+            <button className='trendall' onClick={(event) => {
+                setOrder('ASC')
+            }}>{orderOrDate(query)[1]}</button>
+            <button className='trendall' onClick={(event) => {
+                setOrder('DESC')
+            }}>{orderOrDate(query)[0]}</button>
+            <hr />
+            <p id='sortString'>Sorting By : {queryFormatter(query, order)[0]} - Order : {queryFormatter(query, order)[1]}</p>
             <hr />
             <ul>
               <RetrieveArticles trending={query} articles={articles}/>
@@ -71,39 +128,20 @@ export default function () {
 function RetrieveArticles(props) {
     const trending = props.trending
     const articles = props.articles
-    
-    if (trending === true) {
-        return articles.map((article) => {
-                return ( 
-                  <Link to={`/articles/${article.article_id}`} key={article.article_id}>
-                  <div className='article'>
-                    <h2>{article.title}</h2>
-                    <p>Author : {article.author}</p>
-                    <p>Topic : {article.topic}</p>
-                    <p>Comments : {article.comment_count}</p>
-                 </div>
-                 </Link>
-               )
-              })
-    }
-    else {
-        return articles.map((article) => {
-            console.log(article)
-                return ( 
-                <Link to={`/articles/${article.article_id}`}>
-                  <div className='article'>
-                  <h2>{article.title}</h2>
-                  <p>Author : {article.author}</p>
-                  <p>Topic : {article.topic}</p>
-                  <p>Comments : {article.comment_count}</p>
-                 </div>
-                </Link>
-                    
-                    
-               )
-              })
-    }
-  
+
+    return articles.map((article) => {
+                  return ( 
+                    <Link to={`/articles/${article.article_id}`} key={article.article_id}>
+                    <div className='article'>
+                      <h2>{article.title}</h2>
+                      <p>Author : {article.author}</p>
+                      <p>Topic : {article.topic}</p>
+                      <p>Likes : {article.votes}</p>
+                      <p>Comments : {article.comment_count}</p>
+                   </div>
+                   </Link>
+                 )
+                })
   }
 
   function RetrieveTopics(props) {

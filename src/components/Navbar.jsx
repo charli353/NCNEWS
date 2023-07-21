@@ -4,8 +4,13 @@ import { Link } from 'react-router-dom'
 export default function Navbar() {
   return (
     <nav id='nav'>
+      <section id='navtitle'>
       <Link to="/">
-      <h1>NC News</h1>
+      <h1 id='anchorhome'>NC News</h1>
+      </Link>
+      </section>
+      <Link to='/login/users/:username' id='login'>
+        <h3>Login</h3>
       </Link>
     </nav>
   )
