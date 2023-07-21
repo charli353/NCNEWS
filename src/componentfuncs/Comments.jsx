@@ -1,17 +1,24 @@
 import React from 'react'
 import { useState } from 'react'
 
-import { getComments, postComment } from '../api'
+import { getComments, postComment, deleteComment } from '../api'
 
 
 export function RetrieveComments (props) {
+    const [popUp, setPopUp] = useState(false)
+
     const comments = props.comments
     const showing = props.show
+    const id = props.id
     if(showing && comments.length !== 0){
     return comments.map((comment) => {
       return <li key={comment.comment_id}>
         <h2>{comment.author}</h2>
         <p>"{comment.body}"</p>
+  
+        <DeleteButton comment={comment} id={id} />
+  
+        <hr id='commentdivider'/>
       </li>
     })
   }
@@ -22,11 +29,13 @@ export function RetrieveComments (props) {
     return 
   }
 }
+
   
 export function LeaveComment (props) {
   const [comment, setComment] = useState('')
   const [validity, setValid] = useState('true')
   const [inputFeedback, setInputFeedback] = useState('success')
+
 
 
   const showing = props.show
@@ -38,6 +47,7 @@ export function LeaveComment (props) {
         setValid('Network Error, Try Again')
       })
       .then(() => {
+        setInputFeedback('success')
         setValid("true")
       })
     }
@@ -55,8 +65,9 @@ export function LeaveComment (props) {
       <div id='commentarea'>
         <form>
           <label htmlFor={inputFeedback}></label>
-          <input type="text" id={inputFeedback} value={comment} placeholder='Post a Comment' onChange={(event) => {
+          <input type="text" className={inputFeedback} value={comment} placeholder='Post a Comment' onChange={(event) => {
             setComment(event.target.value)
+            setInputFeedback('success')
           }}/>
           <FailedForm valid={validity}/>
           <button id='submitbutton' onClick={(event) => {
@@ -81,4 +92,35 @@ function FailedForm (props) {
   else if (validity === 'Network Error, Try Again'){
     return validity
   }
+}
+
+function DeleteButton(props) {
+
+  const [errMsg, setErrMsg] = useState('')
+  const [loading, setLoading] = useState(true)
+  const currentComment = props.comment
+  const currentId = props.comment.comment_id
+
+
+  const deleteHandler = (currentId) => {
+ 
+    setLoading(true)
+    deleteComment(currentId).then((data) => {
+      alert(data)
+    })
+
+  }
+  console.log(localStorage)
+  if(localStorage.loggedin === currentComment.author ){
+    
+    return (
+      <section>
+      <button id='deletecomment'onClick={(event) => {
+        event.preventDefault()
+        deleteHandler(currentId)
+
+      }}>Delete</button>
+      </section>
+    )
+  } 
 }

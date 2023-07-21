@@ -5,21 +5,22 @@ export default function () {
     const [inputFeedback, setInputFeedback] = useState('success')
     const [validity, setValid] = useState('false')
     const [user, setUser] = useState('')
-    const [userAuth, setUserAuth] = useState(localStorage.getItem((`globalUser`)))
+    const [userAuth, setUserAuth] = useState(localStorage.globalUser)
     const isMounted = useRef(false)
     const [loggedIn, setLoggedIn] = useState(userAuth)
 
     
 
     useEffect(() => {
-
+        setInputFeedback('success')
         getUser(userAuth).then((response) => {
-            console.log(response)
+
             setValid('true')
+
         }).catch((err) => {
             setValid('false')
             console.log(err)
-            //invalid form set to fail
+            inputFeedback('fail')
         })
     }, [userAuth])
 
@@ -28,8 +29,8 @@ export default function () {
             getUser(user).then((response) => {
 
                 if (isMounted.current) {
-                    console.log(response)
-                    localStorage.setItem('globalUser', JSON.stringify(response))
+             
+                    localStorage.setItem('globalUser', (response.username))
                     setLoggedIn(response.username)
                    
                   } else {
@@ -39,29 +40,29 @@ export default function () {
         }
     }, [user])
 
-    console.log(localStorage)
-    console.log(userAuth)
     const isLoggedIn = (userAuth) => {
         
         if(loggedIn){
             localStorage.setItem('loggedin', `${userAuth}`)
         }
         else {
-            localStorage.setItem('loggedin', `${userAuth}`)
+            console.log('are we here')
+            localStorage.setItem('loggedin', `Login`)
         }
     }
      isLoggedIn(userAuth)
 
+
     return (
         <div>
             <form>
-                <h2>Log Into Existing User</h2>
+                <h2 id='loginprompt'>Log Into Existing User</h2>
                 <label htmlFor="login"></label>
-                <input type="text" id={inputFeedback} onChange={(event) => {
+                <input type="text" className={inputFeedback} onChange={(event) => {
                     setUser(event.target.value)
                 }}/>
                 <button id='submitbutton' onClick={(event) => {
-                    event.preventDefault()
+                    window.location.reload()
                     console.log(user)
                     setUserAuth(user)
                 }}>Submit</button>

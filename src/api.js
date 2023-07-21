@@ -47,7 +47,7 @@ export const updateVotes = (id) => {
 
 
 export const postComment = (id, comment) => {
-    return defaultURL.post(`/articles/${id.article_id}/comments`, {username : 'weegembump', body : comment }).then(({data}) => {
+    return defaultURL.post(`/articles/${id.article_id}/comments`, {username : localStorage.globalUser, body : comment }).then(({data}) => {
         return data
     })
 }
@@ -61,8 +61,20 @@ export const getTopics = () => {
 
 export const getUser = (user) => {
     return defaultURL.get(`/users/${user}`).then(({data}) => {
-        console.log(data)
         return data.user
+    })
+    .catch((err) => {
+        
+        return 'User Not Found'
+    })
+}   
+
+export const deleteComment = (id) => {
+    return defaultURL.delete(`/comments/${id}`).then(() => {
+        return 'Comment Deleted'
+    })
+    .catch((err) => {
+        return err
     })
 }   
 

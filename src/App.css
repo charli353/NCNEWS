@@ -44,6 +44,11 @@
   color: black;
 }
 
+#loginprompt {
+  color: #F4EEE0;
+}
+
+
 #trending {
   border: 1px #F4EEE0 solid;
   grid-column: 1;
@@ -139,7 +144,7 @@
   width: 90%;
 }
 
-#success {
+.success {
   background-color: #362222;
   width: 80%;
   color: #F4EEE0;
@@ -148,7 +153,7 @@
 
 }
 
-#fail {
+.fail {
   background-color: #362222;
   width: 80%;
   color: #F4EEE0;
@@ -276,6 +281,27 @@
   border: 2px #b73840 solid;
 }
 
+#deletecomment {
+  border: none;
+  background-color: #171010;
+  color: #F4EEE0;
+  font-family: 'DM Sans', sans-serif;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  margin-right: 2px;
+
+  width: 100px;
+}
+
+#deletecomment:hover {
+  background-color: #2B2B2B;
+  cursor: pointer;
+}
+
+#deletecomment:focus, #deletecomment:active {
+  border: 2px #b73840 solid;
+}
+
 
 header {
   color: #F4EEE0;
@@ -313,7 +339,11 @@ input {
 }
 
 hr {
-  border: 1px #2B2B2B solid;
+  border: .5px #2B2B2B solid;
+}
+
+#commentdivider {
+  border: 1px #b73840 solid;
 }
 
 a:link { text-decoration: none; 

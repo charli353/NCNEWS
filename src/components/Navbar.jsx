@@ -10,7 +10,7 @@ export default function Navbar() {
       </Link>
       </section>
       <Link to='/login/users/:username' id='login'>
-        <h3>Login</h3>
+        <h3>{localStorage.loggedin}</h3>
       </Link>
     </nav>
   )
