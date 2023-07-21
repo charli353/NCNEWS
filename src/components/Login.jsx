@@ -1,24 +1,56 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { getUser } from '../api'
 
 export default function () {
     const [inputFeedback, setInputFeedback] = useState('success')
     const [validity, setValid] = useState('false')
     const [user, setUser] = useState('')
-    const [userAuth, setUserAuth] = useState('')
+    const [userAuth, setUserAuth] = useState(localStorage.getItem((`globalUser`)))
+    const isMounted = useRef(false)
+    const [loggedIn, setLoggedIn] = useState(userAuth)
 
     
 
     useEffect(() => {
-        setValid('false')
+
         getUser(userAuth).then((response) => {
-            setValid('true')
-            localStorage.setItem('globalUser', JSON.stringify(response))
             console.log(response)
+            setValid('true')
         }).catch((err) => {
+            setValid('false')
             console.log(err)
+            //invalid form set to fail
         })
     }, [userAuth])
+
+    useEffect(() => {
+        if(validity){
+            getUser(user).then((response) => {
+
+                if (isMounted.current) {
+                    console.log(response)
+                    localStorage.setItem('globalUser', JSON.stringify(response))
+                    setLoggedIn(response.username)
+                   
+                  } else {
+                    isMounted.current = true;
+                  }
+            })
+        }
+    }, [user])
+
+    console.log(localStorage)
+    console.log(userAuth)
+    const isLoggedIn = (userAuth) => {
+        
+        if(loggedIn){
+            localStorage.setItem('loggedin', `${userAuth}`)
+        }
+        else {
+            localStorage.setItem('loggedin', `${userAuth}`)
+        }
+    }
+     isLoggedIn(userAuth)
 
     return (
         <div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { getArticles, getTopics} from '../api'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 
 
@@ -12,11 +12,13 @@ export default function () {
     const [loading, setLoading] = useState(true)
     const [topics, setTopics] = useState([])
     const [order, setOrder] = useState('DESC')
+    const [searchParams, setSearchParams] = useSearchParams()
 
   
     useEffect(() => {
       getArticles(query, order).then((response) => {
         setArticles(response)
+        setSearchParams(`sort_by=${query}&order_by=${order}`)
       })
       .then(() => {
         getTopics().then((response) => {
