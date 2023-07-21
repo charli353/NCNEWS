@@ -1,7 +1,7 @@
 #gridContainer {
   display: grid;
   grid-template-columns: 33.333% 33.333% 33.333%;
-  grid-template-rows: 50px 50px 200px 200px 200px 130px;
+  grid-template-rows: 7.5vh 7.5vh 25vh 25vh 25vh 10vh;
   background-color: #171010;
 }
 
@@ -30,8 +30,8 @@
 }
  
 #anchorhome {
-  position: relative;
-  bottom: .2vw;
+  margin-top: 1.5vh;
+  margin-bottom: auto;
 }
 
 #login {
@@ -375,4 +375,141 @@ img {
 
 li {
   list-style: none;
+}
+
+@media (max-width:500px)  { 
+  #gridContainer {
+    display: block;
+    background-color: #171010;
+    overflow: scroll;
+   
+  }
+  #mainContainer {
+    display: block;
+ 
+    
+    background-color: #171010;
+  
+  }
+  #trending {
+    border: 1px #F4EEE0 solid;
+
+    background-color: #313131;
+    height: 30vh;
+  
+    text-align: center;
+    overflow: scroll;
+    border-radius: 2px;
+    margin-bottom: 3vw;
+  }
+  #topics {
+    border: 1px #F4EEE0 solid;
+    height: 30vh;
+    background-color: #313131;
+    border-radius: 2px;
+    overflow: scroll;
+    margin-bottom: 3vw;
+  }
+  #post {
+    border: 1px #F4EEE0 solid;
+    height: 30vh;
+    background-color: #313131;
+    border-radius: 2px;
+    margin-bottom: 3vw;
+  }
+  #topicpage {
+    padding: 4vw;
+    display: block;
+  }
+
+  #articlesbytopic {
+   overflow: scroll;
+    height: 125vw;
+  }
+
+  #singleArticle {
+    display: block;
+    color: #F4EEE0;
+    text-align: center;
+    border: 1px #F4EEE0 solid;
+    padding: 20px;
+    height: 100vh;
+    overflow: scroll;
+
+  }
+
+  #commentsbutton {
+    font-size: 3VW;
+  }
+
+  #likebutton {
+    display: block;
+    width: fit-content;
+    height: fit-content;
+    font-size: 3VW;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #articlebody {
+    margin-bottom: 4vw;
+  }
+
+  #body {
+    height: fit-content;
+    line-height: 5vw;
+    
+  }
+
+#commentdivider {
+  border-width: .2vw;
+}
+
+#anchorhome {
+  font-size: 4.5vw;
+}
+
+#navtitle {
+  grid-column: 1 / 3;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 1vw;
+}
+
+#login {
+  grid-column: 9 / 10;
+  text-align: right;
+  padding-right: 0vw;
+}
+
+h1 {
+  font-size: 4.5vw;
+  margin: 0;
+}
+  h2 {
+    font-size: 4vw;
+  }
+  p {
+    font-size: 2.5vw;
+  }
+  
+.trendall {
+  width: fit-content;
+  height: fit-content;
+  font-size: 3vw;
+}
+  
+  h3 {
+    font-size: 3.5vw;
+  }
+  
+  input {
+    font-size: 2vw;
+  }
+
+
+#spacer {
+    height: 0px;
+}
+
 }

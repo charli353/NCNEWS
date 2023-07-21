@@ -110,7 +110,7 @@ function DeleteButton(props) {
     })
 
   }
-  console.log(localStorage)
+
   if(localStorage.loggedin === currentComment.author ){
     
     return (

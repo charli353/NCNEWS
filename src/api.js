@@ -47,6 +47,7 @@ export const updateVotes = (id) => {
 
 
 export const postComment = (id, comment) => {
+    console.log(id)
     return defaultURL.post(`/articles/${id.article_id}/comments`, {username : localStorage.globalUser, body : comment }).then(({data}) => {
         return data
     })

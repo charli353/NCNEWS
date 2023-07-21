@@ -47,6 +47,7 @@ export default function (props) {
       </div>
       <article id='articlebody'>
       <h3 id='body'>{article.body}</h3>
+ 
       <button id='likebutton' onClick={(event) => {
         setLikes((currLikes) => currLikes + 1)
         updateVotes(currentId).catch((err) => {
@@ -55,6 +56,8 @@ export default function (props) {
         })
       }}>LIKE : {likes}</button>
       <h3>{err}</h3>
+    
+
       
       </article>
       
